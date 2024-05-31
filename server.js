@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello There!');
-});
+// app.get('/home', (req, res) => {
+//   res.send('Hello There!');
+// });
 
 app.listen(3000);
 
@@ -58,15 +58,31 @@ const RESTAURANT = {
 }
 
 
-
+// Home Route
 app.get('/home', (req, res) => {
   res.render('home.ejs', {
     RESTAURANT
   });
 })
 
+
+// Menu Route
 app.get('/menu', (req, res) => {
   res.render('menu.ejs', {
     RESTAURANT
   });
+})
+
+
+// Menu/category Route
+app.get('/menu/:category', (req, res) => {
+  const categories = req.params.category;
+  const menuCategories = RESTAURANT.menu.filter((menuCategory) => menuCategory.category === categories);
+  const categoryChoice = categories.charAt(0).toUpperCase() + categories.slice(1);
+
+  res.render('category.ejs', {
+    menuChoices: menuCategories,
+    category: categoryChoice
+
+  })
 })

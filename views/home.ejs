@@ -8,7 +8,7 @@
 <body>
   <%- include('./partials/nav') %>
 
-  <h1>Home Page</h1>
+  <h1><%= RESTAURANT.name %></h1>
   <h2>
     <%= RESTAURANT.isOpen === true ? "Yes we are open!" : "Sorry, we are closed." %>
   </h2>
